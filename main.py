@@ -3,6 +3,7 @@ from task_manager import add_task, mark_task_as_completed, view_pending_tasks, c
 
 # Define the main function
 def main():
+    tasks = []
     while True:
         print("Task Management System")
         print("1. Add Task")
