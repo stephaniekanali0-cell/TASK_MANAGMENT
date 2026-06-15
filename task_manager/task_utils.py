@@ -14,54 +14,39 @@ tasks = [{"title":"Groceries",
          "completed":True}]
 
 # Implement add_task function
-def add_task(title, description, due_date):
-    if not validate_task_title(title):
-        return
-    
-    if not validate_task_description(description):
-        return
-
-    if not validate_due_date(due_date):
-        return
-
+def add_task(tasks, title, description, due_date):
+    validate_task(title, description, due_date)
     task = {
         "title": title,
-        "description":description,
-        "due_date":due_date,
-        "completed":False
-
+        "description": description,
+        "due_date": due_date,
+        "completed": False
     }
+    tasks.append(task)
+    return "Task added successfully!"
 
-    task.append(task)
 
-    print("Task added successfully!")
+
     
 # Implement mark_task_as_complete function
-def mark_task_as_complete(index, tasks=tasks):
-
+def mark_task_as_completed(tasks, index):
     if 0 <= index < len(tasks):
-        tasks[index]["completed"]=True
-        print("Task marked as completed")
-    else:
-      print("Task marked as complete!")
+        tasks[index]["completed"] = True
+        return "Task marked as complete!"
+    raise ValueError("Invalid task index")
+
+
     
 # Implement view_pending_tasks function
-def view_pending_tasks(tasks=tasks):
-    for i, task in enumerate(tasks):
-        if not task ["completed"]:
-            print(f"\nTask{i}")
-            print(f"Tiitle:{task['description']}")
-            print(f"Description:{task['description']}")
-            print(f"Due Date:{task['due_date']}")
+def view_pending_tasks(tasks):
+    return [t for t in tasks if not t["completed"]]
+
+
 
 # Implement calculate_progress function
-def calculate_progress(tasks=tasks):
+def calculate_progress(tasks):
     if len(tasks) == 0:
-        return 0
-    completed_tasks =0
+        return 0.0
+    completed = sum(1 for t in tasks if t["completed"])
+    return (completed / len(tasks)) * 100
 
-    for task in tasks:
-        if task["completed"]:
-            completed_tasks += 1
-    progress = (completed_tasks/len(tasks))*100
-    return progress
