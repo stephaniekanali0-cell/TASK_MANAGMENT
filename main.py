@@ -25,7 +25,7 @@ def main():
         elif choice == "2":
             index = int(input("Enter task index: "))
             try:
-                result = mark_task_as_completed(tasks, index)
+                result = mark_task_as_completed(tasks, index - 1)
                 print(result)
             except ValueError as e:
                 print(e)
