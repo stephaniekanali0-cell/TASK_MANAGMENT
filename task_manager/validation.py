@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 def validate_task(title, description, due_date):
     if len(title.strip()) == 0:
         raise ValueError("Title cannot be empty")
@@ -7,6 +8,11 @@ def validate_task(title, description, due_date):
         raise ValueError("Description cannot be empty")
     if len(due_date.strip()) == 0:
         raise ValueError("Due date cannot be empty")
+    if len(description) > 500:
+        raise ValueError("Description cannot exceed 500 characters")
+
+
+
 
 def validate_task_title(title):
     if title.strip() == "":
